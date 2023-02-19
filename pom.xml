@@ -17,6 +17,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>redisBasicDemo</module>
+        <module>redisComBatDemo</module>
+        <module>mybatisPlus-codeGenerator</module>
+        <module>swagger3</module>
+        <module>common</module>
     </modules>
 
     <properties>

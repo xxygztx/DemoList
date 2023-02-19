@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/demo-list.iml" filepath="$PROJECT_DIR$/.idea/demo-list.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatisPlus-codeGenerator/mybatisPlus-codeGenerator.iml" filepath="$PROJECT_DIR$/mybatisPlus-codeGenerator/mybatisPlus-codeGenerator.iml" />
       <module fileurl="file://$PROJECT_DIR$/redisBasicDemo/redisBasicDemo.iml" filepath="$PROJECT_DIR$/redisBasicDemo/redisBasicDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/redisComBatDemo/redisComBatDemo.iml" filepath="$PROJECT_DIR$/redisComBatDemo/redisComBatDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/swagger3/swagger3.iml" filepath="$PROJECT_DIR$/swagger3/swagger3.iml" />
     </modules>
   </component>
 </project>

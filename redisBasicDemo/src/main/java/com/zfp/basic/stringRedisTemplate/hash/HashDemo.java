@@ -1,5 +1,6 @@
 package com.zfp.basic.stringRedisTemplate.hash;
 
+import com.zfp.basic.entity.Student;
 import com.zfp.basic.untils.ForeachObject;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,10 @@ public class HashDemo {
     public<T> T get(String key,Class<T> target){
         Map<Object, Object> entries = stringRedisTemplate.opsForHash().entries(key);
         for(Map.Entry<Object, Object> i:entries.entrySet()){
-            System.out.println(i.getKey());
-            System.out.println(i.getValue());
+//            System.out.println(i.getKey().getClass().getTypeName());
+//            System.out.println(i.getValue().getClass().getTypeName());
         }
-        return null;
+        T student = ForeachObject.mapToObject(entries, target);
+        return student;
     }
 }

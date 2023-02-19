@@ -1,6 +1,8 @@
 package com.zfp.basic.stringRedisTemplate.hash;
 
 import com.zfp.basic.entity.Student;
+import com.zfp.basic.untils.ForeachObject;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -8,7 +10,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 
-
+@Slf4j
 @SpringBootTest
 class DemoTest {
     @Resource
@@ -36,7 +38,8 @@ class DemoTest {
         hashDemo.set(key+"1",student);
 
         Student student1 = hashDemo.get(key + "1", Student.class);
-
+        System.out.println(student1);
     }
+
 
 }

@@ -6,17 +6,29 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="mybatisPlus-codeGenerator" />
+        <module name="redisComBatDemo" />
+        <module name="common" />
         <module name="redisBasicDemo" />
+        <module name="swagger3" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="common" target="8" />
       <module name="demo-list" target="8" />
+      <module name="mybatisPlus-codeGenerator" target="8" />
       <module name="redisBasicDemo" target="8" />
+      <module name="redisComBatDemo" target="8" />
+      <module name="swagger3" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common" options="-parameters" />
+      <module name="mybatisPlus-codeGenerator" options="-parameters" />
       <module name="redisBasicDemo" options="-parameters" />
+      <module name="redisComBatDemo" options="-parameters" />
+      <module name="swagger3" options="-parameters" />
     </option>
   </component>
 </project>
