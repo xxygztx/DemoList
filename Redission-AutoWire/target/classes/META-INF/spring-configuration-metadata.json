@@ -1,0 +1,10 @@
+{
+"properties": [
+{
+  "name": "zfp.redisson.address",
+  "type": "java.lang.String",
+  "description": "配置redis地址",
+  "defaultValue": "redis://172.0.0.1:6379"
+}
+]
+}

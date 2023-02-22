@@ -1,0 +1,2 @@
+# Spring Test ContextCustomizerFactories
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.zfp.redission.RedissionAutoConfiguration
