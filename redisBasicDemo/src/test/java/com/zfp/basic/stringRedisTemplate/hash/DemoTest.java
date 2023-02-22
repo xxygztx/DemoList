@@ -42,4 +42,27 @@ class DemoTest {
     }
 
 
+        @Test
+        public void testHashs(){
+            Student student = new Student();
+            student.setName("lisi");
+            student.setAge(23);
+            student.setClassId(1L);
+            student.setTeacherId(45L);
+            student.setClassId(2L);
+            student.setCreateTime(LocalDateTime.now());
+            student.setUpdateTime(LocalDateTime.now());
+            hashDemo.set(key+"2",student);
+
+            Student student1 = hashDemo.get(key + "2", Student.class);
+            System.out.println(student1);
+    }
+
+    @Test
+    public void testDelete(){
+        Boolean delete = stringRedisTemplate.delete("2");
+        System.out.println(delete);
+    }
+
+
 }

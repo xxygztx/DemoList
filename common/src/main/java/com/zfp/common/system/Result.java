@@ -9,6 +9,13 @@ public class Result<T> {
     private String message;
     private T Data;
 
+    public static<T> Result success(){
+        Result result =new Result();
+        result.setCode(200);
+        result.setMessage("成功");
+        return  result;
+    }
+
     public static<T> Result success(T data){
         Result result =new Result();
         result.setCode(200);
@@ -16,10 +23,11 @@ public class Result<T> {
         result.setData(data);
         return  result;
     }
-    public static<T> void fail(){
+    public static<T> Result fail(String message){
         Result result = new Result();
         result.setCode(500);
-        result.setMessage("内部程序错误");
+        result.setMessage(message);
+        return result;
     }
 
     public static <T> Result success(ResultEnum resultEnum,T data){

@@ -2,6 +2,7 @@ package com.zfp.combat.service;
 
 import com.zfp.combat.entity.Shop;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zfp.common.system.Result;
 
 /**
  * <p>
@@ -13,4 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ShopService extends IService<Shop> {
 
+    Result queryShopListById(Long shopId);
+
+    Result updateShopById(Shop shop);
 }

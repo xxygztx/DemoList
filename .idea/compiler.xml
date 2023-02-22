@@ -9,8 +9,10 @@
         <module name="mybatisPlus-codeGenerator" />
         <module name="redisComBatDemo" />
         <module name="common" />
-        <module name="redisBasicDemo" />
+        <module name="SpringBoot-Annotation" />
         <module name="swagger3" />
+        <module name="redisBasicDemo" />
+        <module name="Redission-AutoWire" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,11 +21,15 @@
       <module name="mybatisPlus-codeGenerator" target="8" />
       <module name="redisBasicDemo" target="8" />
       <module name="redisComBatDemo" target="8" />
+      <module name="Redission-AutoWire" target="8" />
+      <module name="SpringBoot-Annotation" target="8" />
       <module name="swagger3" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Redission-AutoWire" options="-parameters" />
+      <module name="SpringBoot-Annotation" options="-parameters" />
       <module name="common" options="-parameters" />
       <module name="mybatisPlus-codeGenerator" options="-parameters" />
       <module name="redisBasicDemo" options="-parameters" />

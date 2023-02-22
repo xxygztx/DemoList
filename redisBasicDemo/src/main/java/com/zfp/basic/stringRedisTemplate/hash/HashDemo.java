@@ -1,5 +1,6 @@
 package com.zfp.basic.stringRedisTemplate.hash;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.zfp.basic.entity.Student;
 import com.zfp.basic.untils.ForeachObject;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -25,6 +26,12 @@ public class HashDemo {
 //            System.out.println(i.getValue().getClass().getTypeName());
         }
         T student = ForeachObject.mapToObject(entries, target);
+        return student;
+    }
+    //使用hutool工具类中的方法,还是会保存跟我写的工具报错的原因一致，可以去看源码
+    public<T> T gets(String key,Class<T> target) throws InstantiationException, IllegalAccessException {
+        Map<Object, Object> entries = stringRedisTemplate.opsForHash().entries(key);
+        T student = BeanUtil.fillBeanWithMap(entries,target.newInstance(),false);
         return student;
     }
 }

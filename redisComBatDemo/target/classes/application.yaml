@@ -37,3 +37,6 @@ mybatis-plus:
   mapper-locations: classpath:com/zfp/combat/mapper/xml/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+zfp:
+  redisson:
+    address: redis://120.46.212.43:6380

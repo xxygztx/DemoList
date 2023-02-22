@@ -21,6 +21,8 @@
         <module>mybatisPlus-codeGenerator</module>
         <module>swagger3</module>
         <module>common</module>
+        <module>Redission-AutoWire</module>
+        <module>SpringBoot-Annotation</module>
     </modules>
 
     <properties>
