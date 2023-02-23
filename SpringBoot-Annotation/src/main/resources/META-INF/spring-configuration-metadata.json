@@ -1,0 +1,16 @@
+{
+  "properties": [
+    {
+      "name": "zfp.usage.first.name",
+      "type": "java.lang.String",
+      "description": "用法一的名字",
+      "defaultValue": "lisi"
+    },
+    {
+      "name": "zfp.usage.first.password",
+      "type": "java.lang.String",
+      "description": "用法一密码",
+      "defaultValue": "@mail_password"
+    }
+  ]
+}

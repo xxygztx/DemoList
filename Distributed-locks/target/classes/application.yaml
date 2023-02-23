@@ -1,0 +1,36 @@
+server:
+  port: 8085
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  application:
+    name: lock
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/redis_combat?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 1020915
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    #    password: 123456
+    database: 5
+    lettuce:
+      pool:
+        #最大连接数
+        max-active: 32
+        #最大阻塞等待时间
+        max-wait: 3000ms
+#  jackson:
+#    default-property-inclusion: non_null # JSON处理时忽略非空字段
+#
+#mybatis-plus:
+#  type-aliases-package: com.hmdp.entity # 别名扫描包
+#
+logging:
+  level:
+    com.zfp: debug
+zfp:
+  redisson:
+    address: redis://localhost:6379
