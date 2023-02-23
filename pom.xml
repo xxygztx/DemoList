@@ -23,6 +23,7 @@
         <module>common</module>
         <module>Redission-AutoWire</module>
         <module>SpringBoot-Annotation</module>
+        <module>Distributed-locks</module>
     </modules>
 
     <properties>

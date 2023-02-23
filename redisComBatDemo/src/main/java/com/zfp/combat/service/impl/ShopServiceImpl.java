@@ -7,6 +7,9 @@ import com.zfp.combat.service.ShopService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zfp.combat.utils.RedisContains;
 import com.zfp.common.system.Result;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
+import org.redisson.client.RedisClient;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -32,6 +35,8 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements Sh
     private StringRedisTemplate stringRedisTemplate;
     @Resource
     private RedisTemplate redisTemplate;
+    @Resource
+    private RedissonClient redissonClient;
 
     /**
      * 我们要解决几个问题， 缓存更新问题，缓存穿透问题，缓存雪崩，缓存击穿问题。
@@ -42,7 +47,8 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements Sh
     @Override
     public Result queryShopListById(Long shopId) {
 
-        Result result = solveCachePenetrate(shopId);
+//        Result result = solveCachePenetrate(shopId);
+        Result result = solveCacheBreakdownByLock(shopId);
         return result;
     }
 
@@ -82,6 +88,8 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements Sh
         return Result.success(shop);
     }
 
+
+
     /**
      * 解决缓存击穿问题，需要明确：缓存击穿就是热点key问题，只不过他失效了，所以他在数据库中是一定存在的。
      * 分析问题：当热点key失效的瞬间，有大量的请求直接打在数据库上，我们需要使这么的请求不能直接打在数据库上，
@@ -101,23 +109,83 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements Sh
             Shop shop = BeanUtil.fillBeanWithMap(entries, new Shop(), false);
             return Result.success(shop);
         }
-        //这里使用synchronized是不符合要求，我们的synchronized不能判断是否获取锁，而且使用jvm内部锁，我们在集群的情况下就会失效。
-        //我们在这里可以考虑使用redis的setNx,setEx命令实现分布式锁，来解决这个问题。
-        Shop shop = this.getById(shopId);
+        Shop shop = null;
         //使用Redission的分布式锁来解决。
+        final String lockKye = RedisContains.shopLockKey + shopId;
+        RLock lock = redissonClient.getLock(lockKye);
+        try {
+            //这里最开始写的是while，经过思考if也有同样的功能
+             if(!lock.tryLock(5, TimeUnit.SECONDS)) {        //看获取锁是否成功，成功-》重建，不成功——》等待下-》继续到redis中查询
+                Thread.sleep(10);
+                 /**
+                  * 重点：仔细思考我们采用递归的这样方式真的合适吗？
+                  * 我们并不能保证我们在一次重构redis缓存后，我们其他用户的也直接通过缓存查询返回，
+                  * 因为，第一次获取锁失败的所有用户，在递归return之后，我们还是会向下执行。
+                  * 所以我们最后的办法是将在redis中查询抽离出来，获取锁失败，直接在while循环中调用抽离出来的方法，
+                  * 直到我们在redis中获取商品缓存。
+                  */
+                solveCacheBreakdownByLock(shopId);  //使用不合适。
+            }
+            //这里使用synchronized是不符合要求，我们的synchronized不能判断是否获取锁，而且使用jvm内部锁，我们在集群的情况下就会失效。
+            //我们在这里可以考虑使用redis的setNx,setEx命令实现分布式锁，来解决这个问题。
+            shop = this.getById(shopId);
+            if (Objects.isNull(shop)) {
+                HashMap hashMap = new HashMap();
+                hashMap.put("null", "null");
+                redisTemplate.opsForHash().putAll(key, hashMap);
+                redisTemplate.expire(key, 2, TimeUnit.MINUTES);
+                return Result.fail("没有此商品");
+            }
+            redisTemplate.opsForHash().putAll(key, BeanUtil.beanToMap(shop));
+            redisTemplate.expire(key, RedisContains.shopCacheTime, TimeUnit.MINUTES);
 
-        if (Objects.isNull(shop)) {
-            HashMap hashMap = new HashMap();
-            hashMap.put("null", "null");
-            redisTemplate.opsForHash().putAll(key, hashMap);
-            redisTemplate.expire(key, 2, TimeUnit.MINUTES);
+        } catch (Exception e) {
+            e.printStackTrace();    //需要修改
+        } finally {
+            lock.delete();
+        }
+        return Result.success(shop);
+    }
+
+    public Result solveCacheBreakdownByLogicExpired(Long shopId) {
+        String key = RedisContains.shopKey + shopId;
+        Map entries = redisTemplate.opsForHash().entries(key);
+        if (entries.get("null") != null) {
             return Result.fail("没有此商品");
         }
-        redisTemplate.opsForHash().putAll(key, BeanUtil.beanToMap(shop));
-        redisTemplate.expire(key, RedisContains.shopCacheTime, TimeUnit.MINUTES);
+        if (!entries.isEmpty()) {
+            Shop shop = BeanUtil.fillBeanWithMap(entries, new Shop(), false);
+            return Result.success(shop);
+        }
+        Shop shop = null;
+        //使用Redission的分布式锁来解决。
+        final String lockKye = RedisContains.shopLockKey + shopId;
+        RLock lock = redissonClient.getLock(lockKye);
+        try {
+            //这里最开始写的是while，经过思考if也有同样的功能
+             if(!lock.tryLock(5, TimeUnit.SECONDS)) {        //看获取锁是否成功，成功-》重建，不成功——》等待下-》继续到redis中查询
+                Thread.sleep(10);
+                solveCacheBreakdownByLock(shopId);
+            }
+            //这里使用synchronized是不符合要求，我们的synchronized不能判断是否获取锁，而且使用jvm内部锁，我们在集群的情况下就会失效。
+            //我们在这里可以考虑使用redis的setNx,setEx命令实现分布式锁，来解决这个问题。
+            shop = this.getById(shopId);
+            if (Objects.isNull(shop)) {
+                HashMap hashMap = new HashMap();
+                hashMap.put("null", "null");
+                redisTemplate.opsForHash().putAll(key, hashMap);
+                redisTemplate.expire(key, 2, TimeUnit.MINUTES);
+                return Result.fail("没有此商品");
+            }
+            redisTemplate.opsForHash().putAll(key, BeanUtil.beanToMap(shop));
+            redisTemplate.expire(key, RedisContains.shopCacheTime, TimeUnit.MINUTES);
+
+        } catch (Exception e) {
+            e.printStackTrace();    //需要修改
+        } finally {
+            lock.delete();
+        }
         return Result.success(shop);
-
-
     }
 
     /**

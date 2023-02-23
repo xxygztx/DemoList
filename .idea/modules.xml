@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Distributed-locks/Distributed-locks.iml" filepath="$PROJECT_DIR$/Distributed-locks/Distributed-locks.iml" />
       <module fileurl="file://$PROJECT_DIR$/Redission-AutoWire/Redission-AutoWire.iml" filepath="$PROJECT_DIR$/Redission-AutoWire/Redission-AutoWire.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringBoot-Annotation/SpringBoot-Annotation.iml" filepath="$PROJECT_DIR$/SpringBoot-Annotation/SpringBoot-Annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />

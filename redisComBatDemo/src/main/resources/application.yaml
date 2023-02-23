@@ -39,4 +39,4 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 zfp:
   redisson:
-    address: redis://120.46.212.43:6380
+    address: redis://localhost:6379
