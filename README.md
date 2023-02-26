@@ -20,9 +20,15 @@
 
 #### 使用说明
 
-1.  项目的每一个小模块都有自己的 md 文件，我们可以适当参考
-2.  xxxx
-3.  xxxx
+1. 项目的每一个小模块都有自己的 md 文件，我们可以适当参考
+2. common是我们的工具类
+3. Distributed-locks使用redis做的分布式锁
+4. mybatisPlus-codeGenerator是mybatis-plus的代码生成工具
+5. redisBasicDemo使用SpringBoot整合redis五种类型的基本操作
+6. redisComBatDemo是redis做缓存用到的问题，和一些常见的解决方案
+7. Redisson-AutoWire使用SpringBot的自动装配原理写的Redisson的stater
+8. springBoot-Annotation里面有一些用到的SpringBoot注解
+9. swagger3对接口的测试工具
 
 #### 参与贡献
 

@@ -8,31 +8,43 @@
         <outputRelativeToContentRoot value="true" />
         <module name="mybatisPlus-codeGenerator" />
         <module name="Distributed-locks" />
+        <module name="Java-rabbitMq" />
+        <module name="SpringAop" />
         <module name="redisComBatDemo" />
         <module name="common" />
+        <module name="BeanValidation" />
         <module name="SpringBoot-Annotation" />
         <module name="swagger3" />
         <module name="redisBasicDemo" />
         <module name="Redission-AutoWire" />
+        <module name="SpringBoot-RabbitMq" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="BeanValidation" target="8" />
       <module name="common" target="8" />
       <module name="demo-list" target="8" />
       <module name="Distributed-locks" target="8" />
+      <module name="Java-rabbitMq" target="8" />
       <module name="mybatisPlus-codeGenerator" target="8" />
       <module name="redisBasicDemo" target="8" />
       <module name="redisComBatDemo" target="8" />
       <module name="Redission-AutoWire" target="8" />
+      <module name="SpringAop" target="8" />
       <module name="SpringBoot-Annotation" target="8" />
+      <module name="SpringBoot-RabbitMq" target="8" />
       <module name="swagger3" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="BeanValidation" options="-parameters" />
       <module name="Distributed-locks" options="-parameters" />
+      <module name="Java-rabbitMq" options="-parameters" />
       <module name="Redission-AutoWire" options="-parameters" />
+      <module name="SpringAop" options="-parameters" />
       <module name="SpringBoot-Annotation" options="-parameters" />
+      <module name="SpringBoot-RabbitMq" options="-parameters" />
       <module name="common" options="-parameters" />
       <module name="mybatisPlus-codeGenerator" options="-parameters" />
       <module name="redisBasicDemo" options="-parameters" />

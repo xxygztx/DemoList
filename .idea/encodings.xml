@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/BeanValidation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Distributed-locks/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Java-rabbitMq/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Redission-AutoWire/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringAop/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringBoot-Annotation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot-RabbitMq/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mybatisPlus-codeGenerator/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/redisBasicDemo/src/main/java" charset="UTF-8" />

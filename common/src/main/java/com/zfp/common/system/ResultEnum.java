@@ -5,7 +5,8 @@ import lombok.Getter;
 @Getter
 public enum ResultEnum {
 
-    SUCCESS(200,"成功")
+    SUCCESS(200,"成功"),
+    PARAMETER_ERROR(400,"传参不合法")
     ;
     private int code;
     private String message;

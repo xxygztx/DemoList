@@ -24,6 +24,10 @@
         <module>Redission-AutoWire</module>
         <module>SpringBoot-Annotation</module>
         <module>Distributed-locks</module>
+        <module>BeanValidation</module>
+        <module>SpringAop</module>
+        <module>Java-rabbitMq</module>
+        <module>SpringBoot-RabbitMq</module>
     </modules>
 
     <properties>

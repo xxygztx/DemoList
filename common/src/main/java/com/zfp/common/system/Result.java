@@ -30,6 +30,13 @@ public class Result<T> {
         return result;
     }
 
+    public static <T> Result fail(int code,String message){
+        Result result = new Result();
+        result.setCode(code);
+        result.setMessage(message);
+        return result;
+    }
+
     public static <T> Result success(ResultEnum resultEnum,T data){
         Result result =new Result();
         result.setCode(resultEnum.getCode());

@@ -1,0 +1,23 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    listener:
+      simple:
+        #自动签收auto  手动 manual
+        acknowledge-mode: manual
+        #消息确认回调
+    publisher-confirm-type: correlated
+    #消息回调失败
+    publisher-returns: true
+    #开启强制消息投递，未被路由至任何一个queue，就会进入ReturnCallback中，不知道什么原因没有生效
+#    template:
+#      mandatory: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/redis_combat?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 1020915

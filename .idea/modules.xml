@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/BeanValidation/BeanValidation.iml" filepath="$PROJECT_DIR$/BeanValidation/BeanValidation.iml" />
       <module fileurl="file://$PROJECT_DIR$/Distributed-locks/Distributed-locks.iml" filepath="$PROJECT_DIR$/Distributed-locks/Distributed-locks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java-rabbitMq/Java-rabbitMq.iml" filepath="$PROJECT_DIR$/Java-rabbitMq/Java-rabbitMq.iml" />
       <module fileurl="file://$PROJECT_DIR$/Redission-AutoWire/Redission-AutoWire.iml" filepath="$PROJECT_DIR$/Redission-AutoWire/Redission-AutoWire.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringAop/SpringAop.iml" filepath="$PROJECT_DIR$/SpringAop/SpringAop.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringBoot-Annotation/SpringBoot-Annotation.iml" filepath="$PROJECT_DIR$/SpringBoot-Annotation/SpringBoot-Annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-RabbitMq/SpringBoot-RabbitMq.iml" filepath="$PROJECT_DIR$/SpringBoot-RabbitMq/SpringBoot-RabbitMq.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/demo-list.iml" filepath="$PROJECT_DIR$/.idea/demo-list.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatisPlus-codeGenerator/mybatisPlus-codeGenerator.iml" filepath="$PROJECT_DIR$/mybatisPlus-codeGenerator/mybatisPlus-codeGenerator.iml" />
